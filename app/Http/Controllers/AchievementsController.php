@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+
+use App\Models\User;
+use App\Repositories\CommentRepositoryInterface;
 
 class AchievementsController extends Controller
 {
@@ -16,5 +18,10 @@ class AchievementsController extends Controller
             'next_badge' => '',
             'remaing_to_unlock_next_badge' => 0
         ]);
+    }
+
+    public function test(CommentRepositoryInterface $commentRepository)
+    {
+        return $commentRepository->all();
     }
 }
