@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Lesson;
+use App\Models\{
+    Comment,
+    Lesson,
+    User
+};
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,8 +18,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $lessons = Lesson::factory()
+        Lesson::factory()
             ->count(20)
+            ->create();
+
+        User::factory()
+            ->has(Comment::factory()
+                ->count(10)
+            )
+            ->create();
+
+        User::factory()
+            ->has(Lesson::factory()->count(3))
             ->create();
     }
 }

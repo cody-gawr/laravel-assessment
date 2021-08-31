@@ -23,7 +23,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
      * @param string $body
      * @return bool
      */
-    public function comments(string $body): bool
+    public function commented(string $body): bool
     {
         return false;
     }
