@@ -8,7 +8,9 @@ use App\Repositories\{
     BaseRepository,
     BaseRepositoryInterface,
     CommentRepository,
-    CommentRepositoryInterface
+    CommentRepositoryInterface,
+    LessonRepository,
+    LessonRepositoryInterface
 };
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -20,7 +22,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public $bindings = [
         BaseRepositoryInterface::class => BaseRepository::class,
-        CommentRepositoryInterface::class => CommentRepository::class
+        CommentRepositoryInterface::class => CommentRepository::class,
+        LessonRepositoryInterface::class => LessonRepository::class
     ];
 
     /**
