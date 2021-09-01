@@ -2,12 +2,15 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Collection;
+
 use App\Contracts\AchieveContract;
-use App\Events\AchievementUnlocked;
-use App\Events\BadgeUnlocked;
+use App\Events\{
+    AchievementUnlocked,
+    BadgeUnlocked
+};
 use App\Models\User;
 use App\Repositories\UserRepositoryInterface;
-use Illuminate\Support\Collection;
 
 class AchieveService implements AchieveContract
 {
