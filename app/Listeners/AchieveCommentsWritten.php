@@ -5,7 +5,7 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class ArchieveLessonWatched
+class AchieveCommentsWritten
 {
     /**
      * Create the event listener.
@@ -20,7 +20,7 @@ class ArchieveLessonWatched
     /**
      * Handle the event.
      *
-     * @param  \App\Events\LessonWatched  $event
+     * @param  \App\Events\CommentWritten  $event
      * @return void
      */
     public function handle($event)

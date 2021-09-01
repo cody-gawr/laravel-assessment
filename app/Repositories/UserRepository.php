@@ -32,8 +32,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
      * @param Lesson $lesson
      * @return bool
      */
-    public function watched(Lesson $lesson): bool
+    public function watched(Lesson $lesson, User $user): array
     {
-        return false;
+        return $user->lessons()->sync($lesson, false);
     }
 }

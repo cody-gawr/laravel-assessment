@@ -5,10 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Contracts\{
-    ArchieveContract
+    AchieveContract
 };
 use App\Services\{
-    ArchieveService
+    AchieveService
 };
 
 class ContractServiceProvider extends ServiceProvider
@@ -30,6 +30,6 @@ class ContractServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(ArchieveContract::class, ArchieveService::class);
+        $this->app->singleton(AchieveContract::class, AchieveService::class);
     }
 }

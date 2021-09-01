@@ -10,8 +10,8 @@ use App\Events\{
     LessonWatched
 };
 use App\Listeners\{
-    ArchieveCommentsWritten,
-    ArchieveLessonWatched
+    AchieveCommentsWritten,
+    AchieveLessonWatched
 };
 
 class EventServiceProvider extends ServiceProvider
@@ -23,10 +23,10 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         CommentWritten::class => [
-            ArchieveCommentsWritten::class
+            AchieveCommentsWritten::class
         ],
         LessonWatched::class => [
-            ArchieveLessonWatched::class
+            AchieveLessonWatched::class
         ],
     ];
 
