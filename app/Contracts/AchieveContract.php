@@ -4,10 +4,7 @@ namespace App\Contracts;
 
 use App\Models\User;
 
-interface ArchieveContract
+interface AchieveContract
 {
-    public function getUnlockedAchievements(User $user): array;
-    public function getNextAvailableAchievements(User $user): array;
-    public function getCurrentBadge(User $user): array;
-    public function getRemainingToUnlockNextBadge(User $user): int;
+    public function getAchievements(User $user): array;
 }
