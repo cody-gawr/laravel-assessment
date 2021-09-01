@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\AchieveContract;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Http\Request;
 
 use App\Models\User;
 

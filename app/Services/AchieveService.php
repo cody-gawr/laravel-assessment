@@ -4,25 +4,9 @@ namespace App\Services;
 
 use App\Contracts\AchieveContract;
 use App\Models\User;
-use App\Repositories\{
-    UserRepositoryInterface
-};
 
 class AchieveService implements AchieveContract
 {
-    /**
-     * @var UserRepositoryInterface
-     */
-    private $userRepository;
-    /**
-     * AchieveService constructor.
-     *
-     */
-    public function __construct(UserRepositoryInterface $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
     public function getAchievements(User $user): array
     {
         $commentsWrittenCount = $user->comments()->count();
@@ -33,10 +17,10 @@ class AchieveService implements AchieveContract
         $badgesAchievements = collect(config('constants.achievements.badges'));
 
         $unlockedCommentsWrittenAchievements = $commentsAchievements->filter(function ($item) use ($commentsWrittenCount) {
-            return $item['count'] < $commentsWrittenCount;
+            return $item['count'] <= $commentsWrittenCount;
         });
         $unlockedLessonsWatchedAchievements = $lessonsAchievements->filter(function ($item) use ($lessonsWatchedCount) {
-            return $item['count'] < $lessonsWatchedCount;
+            return $item['count'] <= $lessonsWatchedCount;
         });
         $unlockedAchievements = $unlockedCommentsWrittenAchievements->merge($unlockedLessonsWatchedAchievements)->pluck('message');
         $achievementsCount = $unlockedAchievements->count();
@@ -64,8 +48,8 @@ class AchieveService implements AchieveContract
         $remaingToUnlockNextBadge = is_null($nextBadgeItem) ? 0 : $nextBadgeItem['achievements_count'] - $achievementsCount;
 
         $achievements = [
-            'unlocked_achievements' => $unlockedAchievements,
-            'next_available_achievements' => $nextAvailableAchievements,
+            'unlocked_achievements' => $unlockedAchievements->toArray(),
+            'next_available_achievements' => $nextAvailableAchievements->toArray(),
             'current_badge' => $currentBadge,
             'next_badge' => $nextBadge,
             'remaing_to_unlock_next_badge' => $remaingToUnlockNextBadge
