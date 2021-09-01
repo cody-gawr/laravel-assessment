@@ -11,4 +11,5 @@ interface UserRepositoryInterface extends BaseRepositoryInterface
 {
     public function commented(string $body): bool;
     public function watched(Lesson $lesson, User $user): array;
+    public function getCommentsAndLessonsCount(User $user): array;
 }

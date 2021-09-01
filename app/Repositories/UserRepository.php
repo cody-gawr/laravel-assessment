@@ -36,4 +36,16 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $user->lessons()->sync($lesson, false);
     }
+
+    /**
+     * @param User
+     * @return array
+     */
+    public function getCommentsAndLessonsCount(User $user): array
+    {
+        return [
+            'comments' => $user->comments()->count(),
+            'lessons' => $user->lessons()->count()
+        ];
+    }
 }

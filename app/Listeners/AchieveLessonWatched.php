@@ -5,22 +5,28 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-use App\Repositories\UserRepositoryInterface;
+use App\Contracts\AchieveContract;
+use App\Events\{
+    AchievementUnlocked,
+    BadgeUnlocked
+};
 
 class AchieveLessonWatched
 {
     /**
-     * @var UserRepositoryInterface
+     * @var AchieveContract
      */
-    private $userRepository;
+    private $achieveContract;
+
     /**
      * Create the event listener.
+     * @param AchieveContract $achieveContract
      *
      * @return void
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(AchieveContract $achieveContract)
     {
-        $this->userRepository = $userRepository;
+        $this->achieveContract = $achieveContract;
     }
 
     /**
@@ -31,6 +37,6 @@ class AchieveLessonWatched
      */
     public function handle($event)
     {
-        $this->userRepository->watched($event->lesson, $event->user);
+        $this->achieveContract->dispatchSomeEvents($event->user);
     }
 }

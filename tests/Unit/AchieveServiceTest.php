@@ -16,7 +16,7 @@ class AchieveServiceTest extends TestCase
     /**
      * @var AchieveContract
      */
-    private $achieveService;
+    private $achieveContract;
     /**
      * @var User
      */
@@ -26,7 +26,7 @@ class AchieveServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->achieveService = app(AchieveContract::class);
+        $this->achieveContract = app(AchieveContract::class);
         $this->beginner = User::factory()->create([
             'name' => 'beginner'
         ]);
@@ -72,9 +72,9 @@ class AchieveServiceTest extends TestCase
      *
      * @return void
      */
-    public function test_get_achievements_for_various_users(): void
+    public function testGetAchievementsForVariousUsers(): void
     {
-        $beginnerAchievement = $this->achieveService->getAchievements($this->beginner);
+        $beginnerAchievement = $this->achieveContract->getAchievements($this->beginner);
         $this->assertEquals([
             'unlocked_achievements' => [],
             'next_available_achievements' => [
@@ -86,7 +86,7 @@ class AchieveServiceTest extends TestCase
             'remaing_to_unlock_next_badge' => 4
         ], $beginnerAchievement, 'pass beginner achievement');
 
-        $intermediateAchievement = $this->achieveService->getAchievements($this->intermediate);
+        $intermediateAchievement = $this->achieveContract->getAchievements($this->intermediate);
         $this->assertEquals([
             'unlocked_achievements' => [
                 'First Comment Written',
@@ -103,7 +103,7 @@ class AchieveServiceTest extends TestCase
             'remaing_to_unlock_next_badge' => 4
         ], $intermediateAchievement, 'pass intermediate achievement');
 
-        $advancedAchievement = $this->achieveService->getAchievements($this->advanced);
+        $advancedAchievement = $this->achieveContract->getAchievements($this->advanced);
         $this->assertEquals([
             'unlocked_achievements' => [
                 'First Comment Written',
@@ -124,7 +124,7 @@ class AchieveServiceTest extends TestCase
             'remaing_to_unlock_next_badge' => 2
         ], $advancedAchievement, 'pass advanced achievement');
 
-        $masterAchievement = $this->achieveService->getAchievements($this->master);
+        $masterAchievement = $this->achieveContract->getAchievements($this->master);
         $this->assertEquals([
             'unlocked_achievements' => [
                 'First Comment Written',

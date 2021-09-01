@@ -12,7 +12,7 @@ use App\Models\{
     User
 };
 
-class AchieveTest extends TestCase
+class AchievementsControllerTest extends TestCase
 {
     /**
      * @var User
@@ -36,7 +36,7 @@ class AchieveTest extends TestCase
             ->create();
     }
 
-    public function test_get_achievements_any_user(): void
+    public function testGetIndex(): void
     {
         $response = $this->get(sprintf('/users/%d/achievements', $this->anyUser->id));
 
